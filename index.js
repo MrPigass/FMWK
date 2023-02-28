@@ -45,7 +45,10 @@ let app = new Vue({
         panier: [
             {
                 listeItem: [],
-                total: 0
+                totalBleu: 0,
+                totalOrange: 0,
+                totalNoir: 0,
+                totalBrun: 0
             }
 
 
@@ -56,17 +59,37 @@ let app = new Vue({
         ajouterAuPanier(couleur){
             this.Vestes.forEach(veste => {
                 if(veste.couleur === couleur){
-                    if(veste.quantite > 0){
-                        veste.quantite = veste.quantite - 1;
-                        alert("Vous avez ajouté " + veste.nom + veste.couleur + " au panier");
-                    }else{
-                        alert("Il n'y a plus de stock pour " + veste.nom);
-                    }
+                    /*verifier si le produit est deja dans le panier*/
+                    let dejaDansPanier = false;
+                    this.panier.listeItem.forEach(item => {
+                        if(item.id === veste.id){
+                            dejaDansPanier = true;
+                        }
+                        /*vérifier si le produit est en stock*/
+                        if(veste.quantite > 0){
+                            if(dejaDansPanier){
+                                item.quantite++;
+                            }else{
+                                veste.quantite = 1;
+                                this.panier.listeItem.push(veste);
+
+                            }
+                            veste.quantite--;
+                        }else{
+                            alert("Le produit n'est plus en stock");
+                        }
+                    });
+
                 }
             });
-        }
+        },
 
-        
-        
+        totalPrix(){
+            let total = 0;
+            this.panier.listeItem.forEach(item => {
+                total += item.prix;
+            });
+            return total;       
+        }
     }
 });
