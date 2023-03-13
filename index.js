@@ -110,7 +110,6 @@ let app = new Vue({
             }else {
                 return "";
             }
-            /*return this.compteNBVestesMMCouleur(couleur) >= 2 && this.compteNBVestesMMCouleur(couleur) == this.vestes.find(veste => veste.couleur == couleur).quantite;*/
         },
         clientPremium(){
             return this.panier.length >= 4    
