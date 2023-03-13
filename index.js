@@ -8,7 +8,7 @@ let app = new Vue({
             {
                 id:1,
                 nom: "Mountain Hardwear · Cloud Bank Gore Tex LT Insulated Jacket Hommes",
-                description: "La Cloud Bank est une veste de ski bleu légère avec un tissu extérieur 2L Gore-Tex et une isolation synthétique entièrement recyclée placée stratégiquement pour réduire le poids et le volume, tout en assurant une excellente protection contre l'humidité. Assurant une chaleur optimale même dans les conditions les plus difficiles, elle est idéale pour tous vos séjours en station.",
+                description: "La Cloud Bank est une veste de ski bleu",
                 image: "image/veste_bleu.jpg",
                 couleur: "bleu",
                 prix: 510,
@@ -18,7 +18,7 @@ let app = new Vue({
             {
                 id:2,
                 nom: "Mountain Hardwear · Cloud Bank Gore Tex LT Insulated Jacket Hommes",
-                description: "La Cloud Bank est une veste de ski orange légère avec un tissu extérieur 2L Gore-Tex et une isolation synthétique entièrement recyclée placée stratégiquement pour réduire le poids et le volume, tout en assurant une excellente protection contre l'humidité. Assurant une chaleur optimale même dans les conditions les plus difficiles, elle est idéale pour tous vos séjours en station.",
+                description: "La Cloud Bank est une veste de ski orange",
                 image: "image/veste_orange.jpg",
                 couleur: "orange",
                 prix: 520,
@@ -27,7 +27,7 @@ let app = new Vue({
             {
                 id:3,
                 nom: "Mountain Hardwear · Cloud Bank Gore Tex LT Insulated Jacket Hommes",
-                description: "La Cloud Bank est une veste de ski noir légère avec un tissu extérieur 2L Gore-Tex et une isolation synthétique entièrement recyclée placée stratégiquement pour réduire le poids et le volume, tout en assurant une excellente protection contre l'humidité. Assurant une chaleur optimale même dans les conditions les plus difficiles, elle est idéale pour tous vos séjours en station.",
+                description: "La Cloud Bank est une veste de ski noir",
                 image: "image/veste_noir.jpg",
                 couleur: "noir",
                 prix: 550,
@@ -36,7 +36,7 @@ let app = new Vue({
             {
                 id:4,
                 nom: "Mountain Hardwear · Cloud Bank Gore Tex LT Insulated Jacket Hommes",
-                description: "La Cloud Bank est une veste de ski brun légère avec un tissu extérieur 2L Gore-Tex et une isolation synthétique entièrement recyclée placée stratégiquement pour réduire le poids et le volume, tout en assurant une excellente protection contre l'humidité. Assurant une chaleur optimale même dans les conditions les plus difficiles, elle est idéale pour tous vos séjours en station.",
+                description: "La Cloud Bank est une veste de ski brun",
                 image: "image/veste_brun.jpg",
                 couleur: "brun",
                 prix: 400,
