@@ -1,4 +1,6 @@
 /*https://www.intersport.ch/fr/mountain-hardwear-cloud-bank-gore-tex-lt-insulated-jacket-vetements-orange-ich.mountainhardwear.1942841.838.html?dwvar_ich.mountainhardwear.1942841.838_color=838&dwvar_ich.mountainhardwear.1942841.838_size=XL*/
+const inputElement = document.getElementById("form1");
+let previousValue = inputElement.value;
 let app = new Vue({
     el: '#app',
     data: {
@@ -43,53 +45,77 @@ let app = new Vue({
         ],
 
         panier: [
-            {
-                listeItem: [],
-                totalBleu: 0,
-                totalOrange: 0,
-                totalNoir: 0,
-                totalBrun: 0
-            }
-
 
         ]
 
     },
     methods:{
         ajouterAuPanier(couleur){
-            this.Vestes.forEach(veste => {
-                if(veste.couleur === couleur){
-                    /*verifier si le produit est deja dans le panier*/
-                    let dejaDansPanier = false;
-                    this.panier.listeItem.forEach(item => {
-                        if(item.id === veste.id){
-                            dejaDansPanier = true;
-                        }
-                        /*vérifier si le produit est en stock*/
-                        if(veste.quantite > 0){
-                            if(dejaDansPanier){
-                                item.quantite++;
-                            }else{
-                                veste.quantite = 1;
-                                this.panier.listeItem.push(veste);
-
-                            }
-                            veste.quantite--;
-                        }else{
-                            alert("Le produit n'est plus en stock");
-                        }
-                    });
-
+            this.vestes.forEach(veste => {
+                if(veste.couleur == couleur){                   
+                    if(this.compteNBVestesMMCouleur(couleur) < veste.quantite){
+                        this.panier.push(veste);
+                    } else {
+                        alert("Vous avez atteint la quantité maximale de cette veste");
+                    }
                 }
             });
         },
 
+        supprimerDuPanier(couleur){
+            this.panier.forEach(veste => {
+                if(veste.couleur == couleur){
+                    this.panier.splice(this.panier.indexOf(veste), 1);
+                }
+            });
+        },
+
+        compteNBVestesMMCouleur(couleur){
+            let nbVestes = 0;
+            this.panier.forEach(veste => {
+                if(veste.couleur == couleur){
+                    nbVestes++;
+                }
+            });
+            return nbVestes;
+        },
+
         totalPrix(){
             let total = 0;
-            this.panier.listeItem.forEach(item => {
-                total += item.prix;
+            this.panier.forEach(veste => {
+                total += veste.prix;
             });
-            return total;       
-        }
+            return total;
+        },
+        changeValeurVeste(couleur){
+            const currentValue = event.target.value;
+            if (currentValue > previousValue) {
+                this.ajouterAuPanier(couleur);
+              } else if (currentValue < previousValue) {
+                this.supprimerDuPanier(couleur);
+              }
+              previousValue = currentValue;
+        },
+        viderPanier(){
+            this.panier = [];
+        },
+        epuisementStock(couleur){
+            /*si il ne reste plus que 2 veste/
+            /*et si il n'y a plus de veste*/
+            nbvesteRestant=this.vestes.find(veste => veste.couleur == couleur).quantite
+            if(nbvesteRestant-this.compteNBVestesMMCouleur(couleur) == 0){
+                return "en rupture de stock";
+            }else if(nbvesteRestant-this.compteNBVestesMMCouleur(couleur) <= 2){
+                return "presque épuisé";
+            }else {
+                return "";
+            }
+            /*return this.compteNBVestesMMCouleur(couleur) >= 2 && this.compteNBVestesMMCouleur(couleur) == this.vestes.find(veste => veste.couleur == couleur).quantite;*/
+        },
+        clientPremium(){
+            return this.panier.length >= 4    
+        },
+
+
     }
 });
